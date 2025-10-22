@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class LoginForm {
 
+
 }
+
+

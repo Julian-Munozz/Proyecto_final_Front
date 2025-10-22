@@ -1,3 +1,33 @@
+<section class ="row">
+  @for (item of habitsList; track $index) {
+    <div class="row-cols-1 row-cols-md-3 g-4">
 
+            <div class="col">
+                <div class="card tarjeta-zen h-100">
+                    
+                    <div class="ilustracion-contenedor">
+                        <img src= {{item.img}} class="card-img-top ilustracion-img" alt="Ilustración del hábito: {{ item.tittle }}">
+                    </div>
+                    
+                    <div class="card-body cuerpo-tarjeta-zen">
+                        
+                        <p class="card-text texto-cita">"{{ item.description }}"</p>
+                        
+                        <div class="d-flex align-items-center info-autor">
+                            <img src="assets/placeholder-avatar.jpg" class="avatar-autor me-2" alt="Avatar de {{ item.user }}">
+                            <div>
+                                <h6 class="nombre-autor mb-0">{{ item.user }}</h6>
+                                <small class="detalle-autor">{{ item.category }} | {{ item.tittle }}</small> 
+                            </div>
+                        </div>
 
-
+                        <div class="interaccion-iconos">
+                            <span class="icono-contador"><i class="bi bi-heart"></i> 643</span>
+                            <span class="icono-contador"><i class="bi bi-share"></i> 16k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  }
+</section>

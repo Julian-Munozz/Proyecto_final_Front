@@ -1,10 +1,23 @@
-<nav> 
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/habits">Habitos</a></li>
-        <li><a href="/beyond">Libros, podcast y contenido sugerido</a></li>
-        <li><a href="/register">Registro</a></li>
-        <li><a href="/admin">Dashboard</a></li>
-    </ul>
+<nav class="barra-navegacion"> <!-- 🔹 Sidebar principal -->
+  <div class="contenedor-barra"> <!-- 🔹 Contenedor interno -->
+
+    <a class="logo-barra" href="/"> <!-- 🔹 Logo -->
+      <img src="/logodef2.png" alt="Logo Kai" class="imagen-logo"> <!-- 🔹 Imagen del logo -->
+    </a>
+
+    <div class="collapse navbar-collapse show" id="menuNavegacion"> <!-- 🔹 Contenedor del menú -->
+      <ul class="lista-navegacion"> <!-- 🔹 Lista de enlaces -->
+        <li><a class="enlace-navegacion"  href="/"> <i class="bi bi-houses"></i> Home</a></li>
+        <li><a class="enlace-navegacion" href="/login"> <i class="bi bi-box-arrow-in-right"></i> Login </a></li>
+        <li><a class="enlace-navegacion" href="/habits"> <i class="bi bi-check-circle"></i> Hábitos</a></li>
+        <li><a class="enlace-navegacion" href="/beyond"> <i class="bi bi-book"></i> Libros, Podcast y Contenido Sugerido</a></li>
+        <li><a class="enlace-navegacion" href="/register"> <i class="bi bi-person-plus"></i> Registro</a></li>
+       
+        @if(isVisible) {
+          <li><a class="enlace-navegacion" href="/admin"> <i class="bi bi-gear"></i> Dashboard</a></li>
+        }
+        
+      </ul>
+    </div>
+  </div>
 </nav>

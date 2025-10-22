@@ -1,1 +1,30 @@
-<p>login works!</p>
+<main>  
+<form class="formulario" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+    <h1>Inicio de Sesión</h1>
+    <div class="mb-3">
+        <label class="form-label">Correo Electrónico</label>
+        <input 
+            type="email"
+            class="form-control"
+            formControlName="email"
+            autocomplete="username"
+            placeholder="Ingrese su correo"
+            [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            >
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input 
+            type="password"
+            class="form-control"
+            formControlName="password"
+            autocomplete="current-password"
+            placeholder="Ingrese su contraseña"
+            [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            >
+    </div>
+
+    <button type="submit" class="btn">Iniciar Sesión</button>
+</form>
+</main>
