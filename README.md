@@ -2,8 +2,11 @@
 
 ## 🧘‍♂️ Descripción General  
 **KAI** es una aplicación web enfocada en el crecimiento personal, la calma y la disciplina interior.  
-Permite a los usuarios crear, visualizar y compartir publicaciones (“secrets”) relacionadas con el bienestar y los hábitos positivos.  
+Permite a los usuarios crear, visualizar y compartir publicaciones relacionadas con el bienestar y los hábitos positivos.  
 
+El diseño de las visatas correspondientes a la parte de inico de sesion y registro, perfil del usuario, publicaciones y pagina de 404 fueron creadas mediante el uso de AI, en caso especifico nanobanan. Adjunto se encuentra el link de figma donde se tendra acceso a las vistas del proyecto:  https://www.figma.com/design/4qA3KisZOVckPx56C0X7nx/Primer-dise%C3%B1o?node-id=0-1&p=f&t=LPPpcNFpzJdYBae3-0
+
+<<<<<<< HEAD
 La aplicación incluye:  
 - 🟢 **Pantalla de inicio de sesión y registro.**  
 
@@ -13,6 +16,8 @@ La aplicación incluye:
 
 - 🚫 **Página de error 404 personalizada.**
 
+=======
+>>>>>>> 6af71f892335071e7c5988193aa709b7161f8a17
 
 La interfaz está inspirada en la filosofía Zen, con un diseño minimalista, tonos suaves y una tipografía limpia que transmite equilibrio.
 
@@ -36,6 +41,9 @@ Antes de ejecutar el proyecto, asegúrate de tener instaladas las siguientes her
 1. ng new *nombre del proyecto*
 2. ng serve -o
 3. ng generate component *nombre-del-componente*
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6af71f892335071e7c5988193aa709b7161f8a17
 
 
