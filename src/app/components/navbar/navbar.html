@@ -1,21 +1,65 @@
-<nav class="barra-navegacion"> <!-- 🔹 Sidebar principal -->
-  <div class="contenedor-barra"> <!-- 🔹 Contenedor interno -->
+<nav class="barra-navegacion"> <!-- Sidebar principal -->
+  <div class="contenedor-barra"> <!-- Contenedor interno -->
 
-    <a class="logo-barra" href="/"> <!-- 🔹 Logo -->
+    <a class="logo-barra" href="/"> <!-- Logo -->
       <img src="/logodef2.png" alt="Logo Kai" class="imagen-logo"> <!-- 🔹 Imagen del logo -->
     </a>
 
     <div class="collapse navbar-collapse show" id="menuNavegacion"> <!-- 🔹 Contenedor del menú -->
-      <ul class="lista-navegacion"> <!-- 🔹 Lista de enlaces -->
-        <li><a class="enlace-navegacion"  href="/"> <i class="bi bi-houses"></i> Home</a></li>
-        <li><a class="enlace-navegacion" href="/login"> <i class="bi bi-box-arrow-in-right"></i> Login </a></li>
-        <li><a class="enlace-navegacion" href="/habits"> <i class="bi bi-check-circle"></i> Hábitos</a></li>
-        <li><a class="enlace-navegacion" href="/beyond"> <i class="bi bi-book"></i> Libros, Podcast y Contenido Sugerido</a></li>
-        <li><a class="enlace-navegacion" href="/register"> <i class="bi bi-person-plus"></i> Registro</a></li>
-       
-        @if(isVisible) {
-          <li><a class="enlace-navegacion" href="/admin"> <i class="bi bi-gear"></i> Dashboard</a></li>
+      <ul class="lista-navegacion"> <!-- Lista de enlaces -->
+        <li><a class="enlace-navegacion" routerLink="/"> <i class="bi bi-houses"></i>  Home</a></li>
+        <li><a class="enlace-navegacion" routerLink="/beyond"> <i class="bi bi-book"></i>  Libros y podcast</a></li>
+        @if (isLogged()) {
+          <li><a class="enlace-navegacion" routerLink="/habits"> <i class="bi bi-check-circle"></i>  Hábitos</a></li>
         }
+
+        <!-- 🔹 Mostrar solo si NO está logueado -->
+        @if (!isLogged()) {
+          <li><a class="enlace-navegacion" routerLink="/login">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+          </a></li>
+
+          <li><a class="enlace-navegacion" routerLink="/register">
+            <i class="bi bi-person-plus"></i> Registro
+          </a></li>
+        }
+
+        <!-- 🔹 Mostrar solo si está logueado -->
+       @if (isLogged()) {
+  @if (isAdmin()) {
+    <li class="submenu" [class.open]="dropDownMenu">
+      <button class="enlace-navegacion boton-submenu" (click)="optionsSubmenu()">
+        <i class="bi bi-gear"></i>Dashboard
+        <i class="bi bi-caret-down-fill icono-desplegable"></i>
+      </button>
+
+      <ul class="submenu-lista">
+        <li>
+          <a class="enlace-navegacion"
+             routerLink="/admin"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">
+             Vista general
+          </a>
+        </li>
+        <li>
+          <a class="enlace-navegacion"
+             routerLink="/admin/habits"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: true }">
+             Hábitos
+          </a>
+        </li>
+      </ul>
+    </li>
+  }
+}
+
+<li>
+            <button type="button" class="enlace-navegacion btnCerrarS" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </button>
+          </li>
         
       </ul>
     </div>

@@ -4,9 +4,9 @@ import { Admin } from './pages/admin/admin';
 import { Login } from './pages/login/login';
 import { NotFound } from './pages/not-found/not-found';
 import { Register } from './pages/register/register';
-import { Habits } from './pages/habits/habits';
+import { HabitsPage } from './pages/habits/habits';
 import { Beyond } from './pages/beyond/beyond';
-import { Users } from './pages/admin/users/users';
+import { Usersadmin } from './pages/admin/users/users.admin';
 import { HabitsAdmin } from './pages/admin/habits.admin/habits.admin';
 import { authGGuard } from './guards/auth.g-guard';
 
@@ -19,12 +19,12 @@ export const routes: Routes = [
         canActivate: [authGGuard],
         canActivateChild: [authGGuard],
         children: [
-            {path: 'user', component: Users},
+            {path: '', component: Usersadmin},
             {path : 'habits', component: HabitsAdmin}
         ]
      },
     { path: 'login', component: Login, title: 'Login' },
-    { path: 'habits', component: Habits, title: 'Hábitos' },
+    { path: 'habits', component: HabitsPage, title: 'Hábitos' },
     { path: 'register', component: Register, title: 'Registro' },
     { path: 'beyond', component: Beyond, title: 'Beyond' },
     { path: '**', component: NotFound, title: '404' }

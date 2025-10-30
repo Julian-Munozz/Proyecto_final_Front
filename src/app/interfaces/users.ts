@@ -6,7 +6,4 @@ export interface Users {
     password : string;
     role : string;
     img : string; 
-    bio? : string;
-    interest? : string;
-    
 }

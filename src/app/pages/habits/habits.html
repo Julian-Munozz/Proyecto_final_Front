@@ -1,5 +1,72 @@
 <main>  
+<div class="container">
+  
+  <h1>Mis Hábitos</h1>
 
-    <app-card> </app-card>
+  
+  <button class="btn-create" (click)="openForm()" *ngIf="!showForm"> Nuevo Hábito</button>
+
+  <!-- FORMULARIO (crear/editar) -->
+  <div class="form-container" *ngIf="showForm">
+    <h2>{{ isEditing ? 'Editar' : 'Crear' }} Hábito</h2>
+    
+    <input 
+      type="text" 
+      [(ngModel)]="habitForm.tittle" 
+      placeholder="Título *">
+
+    <select [(ngModel)]="habitForm.category">
+      <option value="Salud">Salud</option>
+      <option value="Ejercicio">Ejercicio</option>
+      <option value="Productividad">Productividad</option>
+      <option value="Mindfulness">Mindfulness</option>
+    </select>
+
+    <textarea 
+      [(ngModel)]="habitForm.description" 
+      placeholder="Descripción *"
+      rows="3"></textarea>
+
+    <input 
+      type="text" 
+      [(ngModel)]="habitForm.benefit" 
+      placeholder="Beneficio">
+
+    <input 
+      type="url" 
+      [(ngModel)]="habitForm.img" 
+      placeholder="URL de imagen">
+
+    <div class="form-buttons">
+      <button class="btn-cancel" (click)="closeForm()">Cancelar</button>
+      <button class="btn-save" (click)="saveHabit()">Guardar</button>
+    </div>
+  </div>
+
+  <!-- LISTA DE HÁBITOS -->
+  <div class="habits-list" *ngIf="!showForm">
+    
+    <div class="habit-card" *ngFor="let habit of habits">
+      <img [src]="habit.img || '/default.jpg'" alt="Hábito">
+      
+      <div class="habit-info">
+        <span class="category">{{ habit.category }}</span>
+        <h3>{{ habit.tittle }}</h3>
+        <p>{{ habit.description }}</p>
+        <small *ngIf="habit.benefit">💡 {{ habit.benefit }}</small>
+      </div>
+
+      <div class="habit-actions">
+        <button class="btn-edit" (click)="editHabit(habit)">✏️</button>
+        <button class="btn-delete" (click)="deleteHabit(habit._id)">🗑️</button>
+      </div>
+    </div>
+
+    <div *ngIf="habits.length === 0" class="empty">
+      <p>No hay hábitos. ¡Crea tu primer hábito!</p>
+    </div>
+  </div>
+
+</div>
 
 </main>

@@ -1,7 +1,8 @@
-import { Habits } from './../pages/habits/habits';
+import { Habits } from '../interfaces/habits';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'

@@ -1,25 +1,14 @@
-<header>
-  
-
-
-</header>
-
-
-
-
-
-<main>
-  
-</main>
-
-
-
-
-
-
-<footer>
-   
-
-
-
-</footer>
+<section class="home">
+  <h2 class="habitos">Descubre</h2>
+  <div class="grid">
+    <div *ngFor="let homeDta of homeInfo" class="card">
+      <img [src]="homeDta.image" [alt]="homeDta.title">
+      <div class="body">
+        <h3>{{ homeDta.title }}</h3>
+        <small>{{ homeDta.author}}</small>
+        <p>{{ homeDta.description }}</p>
+        <a [href]="homeDta.links" target="_blank" class="btn">Saber más</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,26 +1,19 @@
 <div class="container-fluid g-0 m-0 p-0">
-  <div class="row min-vh-100 g-0">
-    @if (!isVisible) {
-      <!--  Menú lateral izquierdo -->
-      <div class="col-lg-2 col-md-3 bg-dark text-white p-0">
-        <app-navbar></app-navbar>
-      </div>
-    }
+  <div class="row g-0">
+    <!-- Menú lateral izquierdo -->
+    <div class="col-lg-2 col-md-3 bg-dark text-white p-0">
+      <app-navbar></app-navbar>
+    </div>
 
     <!-- Contenido principal -->
-    <div class="col-lg-7 col-md-6 p-4 contenido-p">
+    <div class="col-lg-7 col-md-6 contenido-p">
       <router-outlet></router-outlet>
     </div>
 
-    <!--  Sección Zen a la derecha -->
-    <div class="col-lg-3 col-md-3 p-0 bg-light border-start zen-section">
+    <!-- Sección Zen a la derecha -->
+    <div class="col-lg-3 col-md-3 zen-section bg-light border-start">
       <app-zen></app-zen>
-    </div>
-
-     <!--  Sección footer -->
-    <div>
-      <app-footer></app-footer>
-
     </div>
   </div>
 </div>
+<app-footer></app-footer> 

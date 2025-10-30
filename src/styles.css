@@ -63,3 +63,25 @@ p {
 }
 
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow: hidden; /* Solo bloquea el scroll del HTML */
+}
+
+body {
+  height: 100%;
+  overflow: hidden; /* Solo bloquea el scroll del body */
+}
+
+/* Prevenir scroll en el root de la app */
+app-root {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}

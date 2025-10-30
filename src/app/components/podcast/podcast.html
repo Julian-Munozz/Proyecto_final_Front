@@ -1,0 +1,14 @@
+<section class="podcasts">
+  <h2 class="podc">🎧 Podcasts Recomendados</h2>
+  <div class="grid">
+    <div *ngFor="let podcast of podcastSugg" class="card">
+      <img [src]="podcast.image" [alt]="podcast.title">
+      <div class="body">
+        <h3>{{ podcast.title }}</h3>
+        <small>{{ podcast.host }}</small>
+        <p>{{ podcast.description }}</p>
+        <a [href]="podcast.link" target="_blank" class="btn">Escuchar</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -25,7 +25,7 @@ export class UsersService {
   }
 
   // Crear usuario
-  createUser(userToCreate: any) {
+  createUser(userToCreate: FormData) {
     return this._httpClient.post(this.apiUrl + '/users', userToCreate);
   }
 
@@ -35,7 +35,7 @@ export class UsersService {
   }
 
   // Actualizar perfil
-  updateProfile(id: string, profileData: any) {
+  updateProfile(id: string, profileData: FormData) {
     return this._httpClient.put(this.apiUrl + '/users/' + id + '/profile', profileData);
   }
 

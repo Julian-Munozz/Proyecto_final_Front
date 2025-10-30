@@ -1,0 +1,13 @@
+<section class="sugeridos">
+  <h2 class="recomen">📚 Libros Recomendados</h2>
+  <div class="grid">
+    <div *ngFor="let libro of booksSugg" class="card">
+      <img [src]="libro.image" [alt]="libro.title">
+      <div class="body">
+        <h3>{{ libro.title }}</h3>
+        <small>{{ libro.author }}</small>
+        <p>{{ libro.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
