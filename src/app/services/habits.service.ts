@@ -13,10 +13,10 @@ export class HabitsService {
   private _httpClient = inject(HttpClient);
 
   // Definir ruta de acceso a la API, se puede colocar el api de terceros 
-  private apiUrl = environment.appUrl;
+  private apiUrl = `${environment.appUrl}/posts`;
 
   // Métodos para hacer las peticiones
-  createHabit(habitData: Habits) {
+  createHabit(habitData: Habits | FormData) {
     return this._httpClient.post(this.apiUrl, habitData);
   }
 
@@ -31,7 +31,7 @@ export class HabitsService {
   }
 
   // Actualizar hábito por ID
-  updateHabitById(id: string, habitData: Habits) {
+  updateHabitById(id: string, habitData: Habits | FormData) {
     return this._httpClient.put(this.apiUrl + '/' + id, habitData);
   }
 

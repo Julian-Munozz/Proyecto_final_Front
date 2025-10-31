@@ -2,147 +2,200 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HabitsService } from '../../services/habits.service';
 import { Habits } from '../../interfaces/habits';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
 @Component({
   selector: 'app-habits',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './habits.html',
   styleUrl: './habits.css'
 })
 export class HabitsPage implements OnInit {
 
-  private _habitsService = inject(HabitsService)
-  
+  private _habitsService = inject(HabitsService);
 
- 
   habits: Habits[] = [];
   showForm = false;
   isEditing = false;
-  
-  // Formulario simple
-  habitForm: Partial<Habits> = {};
+  selectedFile: File | null = null;
+
+  habitForm = new FormGroup({
+    _id: new FormControl(''),
+    tittle: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    benefit: new FormControl(''),
+    img: new FormControl('')
+  });
 
   ngOnInit(): void {
-    this.loadHabits();
+    this.getHabits();
   }
 
- 
-  loadHabits(): void {
+  fileChange(event: any) {
+    const input = event.target.files[0];
+    if (input) {
+      this.selectedFile = input;
+      console.log('Archivo seleccionado:', this.selectedFile);
+    }
+  }
+
+  getHabits(): void {
     this._habitsService.getHabits().subscribe({
       next: (response: any) => {
         this.habits = response.data || [];
       },
       error: (error) => {
         Swal.fire({
-                    title: 'Error al cargar los hábitos',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                  });
+          title: 'Error al cargar los hábitos',
+          icon: 'error',
+          text: error.mensaje,
+          confirmButtonText: 'Aceptar'
+        });
       }
     });
   }
 
-  
   openForm(): void {
     this.showForm = true;
     this.isEditing = false;
-    this.habitForm = {
+    this.selectedFile = null;
+    this.habitForm.reset({
+      _id: '',
       tittle: '',
       category: 'Salud',
       description: '',
       benefit: '',
       img: ''
-    };
+    });
   }
 
-  
   closeForm(): void {
     this.showForm = false;
-    this.habitForm = {};
+    this.selectedFile = null;
+    this.habitForm.reset();
   }
 
-  // Guardar (crear o actualizar)
-  saveHabit(): void {
-    if (!this.habitForm.tittle || !this.habitForm.description) {
-       Swal.fire({
-                    title: 'Revisa los campos del formulario',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                  });
+  handleSubmit(): void {
+    if (this.habitForm.invalid) {
+      Swal.fire({
+        title: 'Revisa los campos del formulario',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       return;
     }
 
     if (this.isEditing) {
-      this._habitsService.updateHabitById(this.habitForm._id!, this.habitForm as Habits).subscribe({
-        next: (response: any) => {
-          Swal.fire({
-                      icon: 'success',
-                      title: 'Información actualizada',
-                      text: response.mensaje 
-                    })
-          this.loadHabits();
-          this.closeForm();
-        },
-        error: (error) => {
-           Swal.fire({
-                    title: 'Error al actualizar la información',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                  });
-        }
-      });
+      this.updateHabitsById();
     } else {
-      // Crear
-      this._habitsService.createHabit(this.habitForm as Habits).subscribe({
-        next: (response: any) => {
-         Swal.fire({
-                     icon: 'success',
-                     title: 'Se ha creado el hábito',
-                     text: response.mensaje 
-                   })
-          this.loadHabits();
-          this.closeForm();
-        },
-        error: (error) => {
-           Swal.fire({
-                    title: 'Error al crear el hábito',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                  });
-        }
-      });
+      this.createPost();
     }
   }
 
-  // Editar hábito
+  createPost(): void {
+    const habitData: FormData = new FormData();
+
+    habitData.append('tittle', this.habitForm.value.tittle || '');
+    habitData.append('category', this.habitForm.value.category || '');
+    habitData.append('description', this.habitForm.value.description || '');
+    habitData.append('benefit', this.habitForm.value.benefit || '');
+    habitData.append('img', this.selectedFile || '');
+
+    this._habitsService.createHabit(habitData).subscribe({
+      next: (response: any) => {
+        console.log('Hábito creado:', response);
+        if (response) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Se ha creado el hábito',
+            text: response.mensaje
+          });
+          this.getHabits();
+          this.closeForm();
+        }
+      },
+      error: (error) => {
+        console.error('Error al crear:', error);
+        Swal.fire({
+          title: 'Error al crear el hábito',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
+
+  updateHabitsById(): void {
+    const habitData: FormData = new FormData();
+
+    habitData.append('tittle', this.habitForm.value.tittle || '');
+    habitData.append('category', this.habitForm.value.category || '');
+    habitData.append('description', this.habitForm.value.description || '');
+    habitData.append('benefit', this.habitForm.value.benefit || '');
+    
+    if (this.selectedFile) {
+      habitData.append('img', this.selectedFile);
+    }
+
+    this._habitsService.updateHabitById(this.habitForm.value._id!, habitData).subscribe({
+      next: (response: any) => {
+        console.log('Hábito actualizado:', response);
+        if (response) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada',
+            text: response.mensaje
+          });
+          this.getHabits();
+          this.closeForm();
+        }
+      },
+      error: (error) => {
+        console.error('Error al actualizar:', error);
+        Swal.fire({
+          title: 'Error al actualizar la información',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
+
   editHabit(habit: Habits): void {
     this.showForm = true;
     this.isEditing = true;
-    this.habitForm = { ...habit };
+    this.selectedFile = null;
+    this.habitForm.patchValue({
+      _id: habit._id,
+      tittle: habit.tittle,
+      category: habit.category,
+      description: habit.description,
+      benefit: habit.benefit || '',
+      img: habit.img || ''
+    });
   }
 
-  // Eliminar hábito
-  deleteHabit(id: string): void {
-    if (!confirm('¿Eliminar este hábito?')) return;
-    
+  deleteHabitsById(id: string): void {
     this._habitsService.deleteHabitById(id).subscribe({
       next: (response: any) => {
+        console.log('Hábito eliminado:', response);
         Swal.fire({
-                    icon: 'success',
-                    title: 'Se elimino correctamente',
-                    text: response.mensaje
-                  })
-        this.loadHabits();
+          icon: 'success',
+          title: 'Se eliminó correctamente',
+          text: response.mensaje
+        });
+        this.getHabits();
       },
       error: (error: any) => {
+        console.error('Error al eliminar:', error);
         Swal.fire({
-                    title: 'Error al cargar los hábitos',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                  });
+          title: 'Error al eliminar el hábito',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
       }
     });
   }

@@ -3,19 +3,6 @@
   
     }
 
-.container-fluid {
-  padding: 0 !important;
-  margin: 0 !important;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Row principal */
-.row {
-  height: 100vh;
-  margin: 0 !important;
-  overflow: hidden;
-}
 
 /* Container principal */
 .container-fluid {
@@ -73,83 +60,3 @@
   background-color: var(--color-neutral);
 }
 
-/* ============================================
-   SCROLLBAR PERSONALIZADA
-   ============================================ */
-
-/* Scrollbar del navbar (oscuro) */
-.col-lg-2.col-md-3.bg-dark::-webkit-scrollbar {
-  width: 8px;
-}
-
-.col-lg-2.col-md-3.bg-dark::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.col-lg-2.col-md-3.bg-dark::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-.col-lg-2.col-md-3.bg-dark::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-/* Scrollbar del contenido y zen (claro) */
-.contenido-p::-webkit-scrollbar,
-.zen-section::-webkit-scrollbar {
-  width: 8px;
-}
-
-.contenido-p::-webkit-scrollbar-track,
-.zen-section::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.contenido-p::-webkit-scrollbar-thumb,
-.zen-section::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-.contenido-p::-webkit-scrollbar-thumb:hover,
-.zen-section::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
-@media (max-width: 991px) and (min-width: 768px) {
-  .col-lg-2.col-md-3.bg-dark {
-    width: 25% !important; /* col-md-3 */
-  }
-  
-  .contenido-p {
-    left: 25% !important;
-    width: 50% !important; /* col-md-6 */
-  }
-  
-  .zen-section {
-    width: 25% !important; /* col-md-3 */
-  }
-}
-
-/* ============================================
-   RESPONSIVE - MÓVILES (< 768px)
-   ============================================ */
-@media (max-width: 767px) {
-  /* Navbar compacto con solo iconos */
-  .col-lg-2.col-md-3.bg-dark {
-    width: 70px !important;
-  }
-  
-  /* Contenido ocupa casi todo el ancho */
-  .contenido-p {
-    left: 70px !important;
-    width: calc(100% - 70px) !important;
-    padding: 1rem !important;
-  }
-  
-  /* Ocultar sidebar zen en móviles */
-  .zen-section {
-    display: none !important;
-  }
-}

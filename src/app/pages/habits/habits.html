@@ -6,42 +6,71 @@
   
   <button class="btn-create" (click)="openForm()" *ngIf="!showForm"> Nuevo Hábito</button>
 
-  <!-- FORMULARIO (crear/editar) -->
   <div class="form-container" *ngIf="showForm">
+    
+  <form class="formulario" [formGroup]="habitForm" (ngSubmit)="handleSubmit()">
     <h2>{{ isEditing ? 'Editar' : 'Crear' }} Hábito</h2>
     
-    <input 
-      type="text" 
-      [(ngModel)]="habitForm.tittle" 
-      placeholder="Título *">
+    <div class="mb-3">
+      <label for="tittle" class="form-label">Título</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="tittle"
+        formControlName="tittle"
+        placeholder="Título *">
+    </div>
 
-    <select [(ngModel)]="habitForm.category">
-      <option value="Salud">Salud</option>
-      <option value="Ejercicio">Ejercicio</option>
-      <option value="Productividad">Productividad</option>
-      <option value="Mindfulness">Mindfulness</option>
-    </select>
+    <div class="mb-3">
+      <label for="category" class="form-label">Categoría</label>
+      <select 
+        class="form-control"
+        id="category"
+        formControlName="category">
+        <option value="Salud">Salud</option>
+        <option value="Ejercicio">Ejercicio</option>
+        <option value="Productividad">Productividad</option>
+        <option value="Mindfulness">Mindfulness</option>
+      </select>
+    </div>
 
-    <textarea 
-      [(ngModel)]="habitForm.description" 
-      placeholder="Descripción *"
-      rows="3"></textarea>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea 
+        class="form-control"
+        id="description"
+        formControlName="description"
+        placeholder="Descripción *"
+        rows="3"></textarea>
+    </div>
 
-    <input 
-      type="text" 
-      [(ngModel)]="habitForm.benefit" 
-      placeholder="Beneficio">
+    <div class="mb-3">
+      <label for="benefit" class="form-label">Beneficio</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="benefit"
+        formControlName="benefit"
+        placeholder="Beneficio">
+    </div>
 
-    <input 
-      type="url" 
-      [(ngModel)]="habitForm.img" 
-      placeholder="URL de imagen">
+    <div class="mb-3">
+      <label for="img" class="form-label">Imagen</label>
+      <input 
+        type="file"
+        class="form-control"
+        id="img"
+        formControlName="img"
+        accept="image/*"
+        (change)="fileChange($event)">
+    </div>
 
     <div class="form-buttons">
-      <button class="btn-cancel" (click)="closeForm()">Cancelar</button>
-      <button class="btn-save" (click)="saveHabit()">Guardar</button>
+      <button type="button" class="btn-cancel" (click)="closeForm()">Cancelar</button>
+      <button type="submit" class="btn">Guardar</button>
     </div>
-  </div>
+  </form>
+</div>
 
   <!-- LISTA DE HÁBITOS -->
   <div class="habits-list" *ngIf="!showForm">
@@ -58,7 +87,7 @@
 
       <div class="habit-actions">
         <button class="btn-edit" (click)="editHabit(habit)">✏️</button>
-        <button class="btn-delete" (click)="deleteHabit(habit._id)">🗑️</button>
+        <button class="btn-delete" (click)="deleteHabitsById(habit._id)">🗑️</button>
       </div>
     </div>
 

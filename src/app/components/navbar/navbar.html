@@ -9,9 +9,8 @@
       <ul class="lista-navegacion"> <!-- Lista de enlaces -->
         <li><a class="enlace-navegacion" routerLink="/"> <i class="bi bi-houses"></i>  Home</a></li>
         <li><a class="enlace-navegacion" routerLink="/beyond"> <i class="bi bi-book"></i>  Libros y podcast</a></li>
-        @if (isLogged()) {
+        
           <li><a class="enlace-navegacion" routerLink="/habits"> <i class="bi bi-check-circle"></i>  Hábitos</a></li>
-        }
 
         <!-- 🔹 Mostrar solo si NO está logueado -->
         @if (!isLogged()) {

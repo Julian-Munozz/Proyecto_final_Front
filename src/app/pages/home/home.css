@@ -90,14 +90,3 @@
     font-weight: 600;
 }
 
-/* Responsive - vuelve a vertical en pantallas pequeñas */
-@media (max-width: 768px) {
-    .card {
-        flex-direction: column;
-    }
-
-    .card img {
-        width: 100%;
-        height: 200px;
-    }
-}
