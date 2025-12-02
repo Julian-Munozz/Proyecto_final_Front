@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build: ./
+    image: mi-frontend:latest
+    container_name: frontend
+    ports:
+      - "4200:80" #80 es del servidor web nginx
+    restart: unless-stopped

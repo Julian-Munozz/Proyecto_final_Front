@@ -1,1 +1,11 @@
-<p>habits works!</p>
+<div class="habits-list">
+    
+    <div class="habit-card" *ngFor="let habit of habits">
+      <img [src]="'http://localhost:3000' + habit.img" alt="Hábito">
+      
+      <div class="habit-info">
+        <span class="category">{{ habit.category }}</span>
+        <h3>{{ habit.tittle }}</h3>
+        <p>{{ habit.description }}</p>
+        <small *ngIf="habit.benefit">💡 {{ habit.benefit }}</small>
+      </div>

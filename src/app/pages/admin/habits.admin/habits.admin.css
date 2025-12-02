@@ -1,0 +1,26 @@
+
+.habits-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.habit-card {
+
+  display: flex;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  align-items: center;
+}
+
+.habit-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.habit-info {
+  flex: 1;
+}

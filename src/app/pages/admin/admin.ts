@@ -3,9 +3,10 @@ import {RouterOutlet} from '@angular/router';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
+
 @Component({
   selector: 'app-admin',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet],
   templateUrl: './admin.html',
   styleUrl: './admin.css'
 })

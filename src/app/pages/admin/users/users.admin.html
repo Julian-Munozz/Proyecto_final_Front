@@ -1,14 +1,15 @@
-<div class="container border border-black d-flex flex-wrap gap-5 p-4">
-    @for (user of allUsers; track $index) {
-    <div>
-        
-        <p>{{user.username}}</p>
-        <p>{{user.email}}</p>
+<div class="users-container">
+  @for (user of allUsers; track $index) {
+    <div class="user-card">
+      <div class="user-info">
+        <img [src]="'http://localhost:3000' + user.img" alt="user image">
+        <p class="username">{{ user.username }}</p>
+        <p class="email">{{ user.email }}</p>
+      </div>
 
-        <div class="d-flex gap-4">
-            <button class="btn btn-info" >Actualizar</button>
-            <button class="btn btn-danger" (click)="deleteUsersById(user._id)">Eliminar</button>
-        </div>
+      <div class="actions">
+        <button class="btn-delete" (click)="deleteUsersById(user._id)">Eliminar</button>
+      </div>
     </div>
-    }
+  }
 </div>

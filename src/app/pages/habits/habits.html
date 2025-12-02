@@ -76,7 +76,7 @@
   <div class="habits-list" *ngIf="!showForm">
     
     <div class="habit-card" *ngFor="let habit of habits">
-      <img [src]="habit.img || '/default.jpg'" alt="Hábito">
+      <img [src]="'http://localhost:3000' + habit.img" alt="Hábito">
       
       <div class="habit-info">
         <span class="category">{{ habit.category }}</span>

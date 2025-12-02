@@ -1,0 +1,64 @@
+.users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--color-bg);
+  font-family: var(--font-secondary);
+}
+
+/* Cada tarjeta de usuario */
+.user-card {
+  background: var(--color-accent);
+  border-radius: 1rem;
+  border: 1px solid var(--color-neutral);
+  width: 280px;
+  padding: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Información del usuario */
+.user-info {
+  margin-bottom: 1rem;
+}
+
+.username {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  margin-bottom: 0.3rem;
+}
+
+.email {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+/* Contenedor del botón */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Botón eliminar */
+.btn-delete {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: var(--color-secondary);
+}

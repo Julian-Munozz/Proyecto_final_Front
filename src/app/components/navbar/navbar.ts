@@ -31,7 +31,6 @@ dropDownMenu = false;
 
 optionsSubmenu() {
   this.dropDownMenu = !this.dropDownMenu;
-  console.log('Estado del menú:', this.dropDownMenu);
 }
 
 }
